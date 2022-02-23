@@ -6,7 +6,7 @@ import {useContextGlobal} from "./Context"
 
 const PokemonGeneric = () => {
 
-    const {pokemons, search, pokeList,dispatch, SetIsLoading, hasEvolutionData, setHasEvolutionData} = useContextGlobal()
+    const {pokemons, search, pokeList,dispatch, SetIsLoading, hasEvolutionData, setHasEvolutionData,setDisplayPokemons} = useContextGlobal()
 
     return pokemons.sort((a,b) => {return a.id - b.id}).map((poke) => {
         
@@ -37,12 +37,20 @@ const PokemonGeneric = () => {
             backgroundColor: bgColor
         }
 
-        // poke.sprites.other.dream_world.front_default
+        const isLoadingPokemon = true
+
+        const loadingStyle = {
+            backgroundColor :"white"
+        }
 
         return (
+            
+    
                 <div key={poke.id} className="pokemon-card" style={bgStyle} 
                                 
                     onClick={ async () => {
+
+                    setDisplayPokemons(false)
 
                     //SetIsLoading(true)
 
@@ -166,6 +174,7 @@ const PokemonGeneric = () => {
                         })}
                     </div>
                 </div>
+            
         )
     })
 

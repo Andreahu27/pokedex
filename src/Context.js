@@ -8,6 +8,7 @@ const AppProvider = ({ children }) => {
 
     const [pokemons, SetPokemons] = useState([])
     const [prevPokemons, SetPrevPokemons] = useState([])
+    const [displayPokemons, setDisplayPokemons] = useState(true)
 
     let [pageCount, setPageCount] = useState(1)
 
@@ -144,7 +145,7 @@ const AppProvider = ({ children }) => {
             pokemons, SetIsLoading, isLoading, search, handleSearch, pokeList, setSearch,
             handleReset, isSearching, getPokemonRand, generateNumbers, dispatch, pokemonDetails, isRendered, 
             setIsRendered, pageCount, setPageCount, hasEvolutionData, setHasEvolutionData, originalList,
-            loadMoreFunc, searchFunc
+            loadMoreFunc, searchFunc, displayPokemons, setDisplayPokemons
         }}
         >{children}
         </AppContext.Provider>

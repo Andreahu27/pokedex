@@ -19,7 +19,7 @@ const Home = () => {
 
     
 
-    const {setSearch, handleReset, isSearching, isLoading, dispatch,
+    const {setSearch, handleReset, isSearching, isLoading, dispatch, displayPokemons, setDisplayPokemons,
         pokemonDetails,displayDetails,bottomRef, setIsRendered, pokemons,
         hasEvolutionData, setHasEvolutionData, setIsSearching, loadMoreFunc} =useContextGlobal()
 
@@ -57,7 +57,11 @@ const Home = () => {
                         <h3>ID: #{pokemonDetails.main.id}</h3>
                     </div>
                     <img className="img-bio" src={pokemonDetails.main.sprites.other.dream_world.front_default || pokemonDetails.main.sprites.other["official-artwork"].front_default } alt="" />
-                    <div onClick={() => dispatch({type:"CLOSE_DETAILS", payload: {display:false}})}><FaRegWindowClose className="close-icon"/></div>
+                    <div onClick={() => {
+                    setDisplayPokemons(true)    
+                    dispatch({type:"CLOSE_DETAILS", payload: {display:false}})
+                    }}
+                    ><FaRegWindowClose className="close-icon"/></div>
 
                 </div>
 
@@ -176,17 +180,17 @@ const Home = () => {
 
 
             <main className="home">
-                {pokemons.length === 0 ? (
+                {pokemons.length === 0  ? (
                     <>
                     <p id="no-search-p">Oops no Pokemons found, please retry with a different search...<br></br> </p>
                     <img id="no-search-img" src={require("./assets/snorlax-sleeping.png")}  alt="#" />
                     </>)
-                : <PokemonGeneric />}    
+                :  displayPokemons && <PokemonGeneric />}    
             </main>
 
 
 
-
+            {displayPokemons && (
             <div id="load-more-btn" className="buttons-div" ref={bottomRef}>
 
 
@@ -217,6 +221,7 @@ const Home = () => {
 
            
             </div>
+            )}
 
 
 
