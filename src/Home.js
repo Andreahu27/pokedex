@@ -19,7 +19,9 @@ const Home = () => {
 
     
 
-    const {getPokemon,setSearch, handleReset, isSearching, isLoading, dispatch, pokemonDetails,displayDetails,bottomRef, setIsRendered, getPokemonBack, hasEvolutionData, setHasEvolutionData} =useContextGlobal()
+    const {setSearch, handleReset, isSearching, isLoading, dispatch,
+        pokemonDetails,displayDetails,bottomRef, setIsRendered, pokemons,
+        hasEvolutionData, setHasEvolutionData, setIsSearching, loadMoreFunc} =useContextGlobal()
 
     if (isLoading) {
         return (
@@ -174,7 +176,12 @@ const Home = () => {
 
 
             <main className="home">
-                <PokemonGeneric />
+                {pokemons.length === 0 ? (
+                    <>
+                    <p id="no-search-p">Oops no Pokemons found, please retry with a different search...<br></br> </p>
+                    <img id="no-search-img" src={require("./assets/snorlax-sleeping.png")}  alt="#" />
+                    </>)
+                : <PokemonGeneric />}    
             </main>
 
 
@@ -193,8 +200,7 @@ const Home = () => {
 
                         <button onClick={() => {
                             setIsRendered(prevVal => !prevVal)
-                            getPokemon()
-                            //setIsRendered(prevVal => !prevVal)
+                            loadMoreFunc()
                             }} 
                             className= {`${isSearching ? "load-more display-no" : "load-more"}`}
 

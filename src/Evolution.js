@@ -10,7 +10,7 @@ const Evolution = () => {
 
 
 
-    const {pokemonDetails,isLoading} = useContextGlobal()
+    const {pokemonDetails,isLoading, originalList} = useContextGlobal()
 
     if (isLoading) {
         return (
@@ -70,11 +70,13 @@ const Evolution = () => {
             <div className="evo-level">
                 {firstEvoArray.map(spec => {return (
                     <>
-                    <img src={pokemonDetails.evoIMG.firstEvoIMGs[0]} alt="xx" />
+                    {/* <img src={pokemonDetails.evoIMG.firstEvoIMGs[0]} alt="xx" /> */}
+                    <img src={"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/" + spec.species.url.split("/").filter(text => text !== "").pop() + ".png"} alt="xx" />
                     <div className="evo-level-details">
                         <p className="evo-name">{spec.species.name} </p>
-                        <p className="evo-details-poke">Minimum level:{spec.evolution_details[0].min_level}</p>
+                        <p className="evo-details-poke">Minimum level:{spec.evolution_details[0].min_level || "none"}</p>
                         <p className="evo-details-poke">Trigger: {spec.evolution_details[0].trigger.name}</p>
+                        {console.log(spec.species.url.split("/").filter(text => text !== "").pop())}
                     </div>
                     </>                    
                     )})}
@@ -84,16 +86,21 @@ const Evolution = () => {
             {hasSecondEvolution && (
 
             <div className="evo-level">
-                {secondEvoArray.map(spec => {return (
+                {console.log(secondEvoArray)}
+                {secondEvoArray.map(spec => 
+                    spec.evolves_to.map(item => { return (
                     <>
-                    <img src={pokemonDetails.evoIMG.secondEvoIMGs[0]} alt="xx" />
+                    {/* <img src={pokemonDetails.evoIMG.secondEvoIMGs[0]} alt="xx" /> */}
+                    <img src={"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/" + item.species.url.split("/").filter(text => text !== "").pop() + ".png"} alt="xx" />
+                    {console.log(item.species.url.split("/").filter(text => text !== "").pop())}
                     <div className="evo-level-details">
-                        <p>{secondEvoArray.map(item => item.evolves_to.map(spec => {return (<p className="evo-name">{spec.species.name}</p>)}))}</p>
-                        <p className="evo-details-poke">{secondEvoArray.map(item => item.evolves_to.map(spec => {return (<p>Trigger: {spec.evolution_details[0].min_level}</p>)}))}</p>
-                        <p className="evo-details-poke">{secondEvoArray.map(item => item.evolves_to.map(spec => {return (<p>Trigger: {spec.evolution_details[0].trigger.name}</p>)}))}</p>
+                        <p className="evo-name">{item.species.name}</p>
+                        <p className="evo-details-poke">Minimum level: {item.evolution_details[0].min_level || "none"}</p>
+                        <p className="evo-details-poke">Trigger: {item.evolution_details[0].trigger.name}</p>
                     </div>
-                    </>                    
-                    )})}
+                    </>
+                    )})                    
+                    )}
             </div>
             )}
 

@@ -3,7 +3,7 @@ import { useContextGlobal } from "./Context"
 
 const Nav = () => {
 
-    const {search, handleSearch, getPokemon, getPokemonRand, generateNumbers} = useContextGlobal()
+    const {search, handleSearch, getPokemon, getPokemonRand, generateNumbers,setSearch, searchFunc,pokeList} = useContextGlobal()
 
     return (
 
@@ -35,9 +35,10 @@ const Nav = () => {
                     <section className="buttons-sec">
 
                         <button className="search-btn"
-                                onClick={ (e)=> {
+                                onClick={(e)=> {
                                     e.preventDefault()
-                                    getPokemon()}
+                                    searchFunc()
+                                    }
                                 }>
                                 Search
                         </button>
