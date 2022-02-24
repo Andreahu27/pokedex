@@ -612,6 +612,10 @@ body {
 }
 
 @media (max-width: 450px) {
+  html {
+    min-width: 100vh;
+  }
+
   .pokemon-card {
     min-width: 50px;
     max-width: 165px;
