@@ -185,22 +185,13 @@ const Home = () => {
                     <p id="no-search-p">Oops no Pokemons found, please retry with a different search...<br></br> </p>
                     <img id="no-search-img" src={require("./assets/snorlax-sleeping.png")}  alt="#" />
                     </>)
-                :  displayPokemons && <PokemonGeneric />}    
+                :  <PokemonGeneric/>}    
             </main>
 
 
 
             {displayPokemons && (
             <div id="load-more-btn" className="buttons-div" ref={bottomRef}>
-
-
-                        {/* <button onClick={() => {
-                            getPokemonBack()
-                            }} 
-                            className= {`${isSearching ? "load-more display-no" : "load-more"}`}
-
-                            
-                        >BACK TO PREVIOUS</button> */}
 
                         <button onClick={() => {
                             setIsRendered(prevVal => !prevVal)
@@ -218,8 +209,6 @@ const Home = () => {
                             
                         >RESET</button>
 
-
-           
             </div>
             )}
 

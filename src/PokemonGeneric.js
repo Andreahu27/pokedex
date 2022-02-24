@@ -6,7 +6,7 @@ import {useContextGlobal} from "./Context"
 
 const PokemonGeneric = () => {
 
-    const {pokemons, search, pokeList,dispatch, SetIsLoading, hasEvolutionData, setHasEvolutionData,setDisplayPokemons} = useContextGlobal()
+    const {pokemons, search, pokeList,dispatch, SetIsLoading, hasEvolutionData, setHasEvolutionData,setDisplayPokemons, displayPokemons} = useContextGlobal()
 
     return pokemons.sort((a,b) => {return a.id - b.id}).map((poke) => {
         
@@ -46,7 +46,7 @@ const PokemonGeneric = () => {
         return (
             
     
-                <div key={poke.id} className="pokemon-card" style={bgStyle} 
+                <div key={poke.id} className="pokemon-card" style={displayPokemons ? bgStyle : {visibility:"hidden"}}
                                 
                     onClick={ async () => {
 

@@ -7,7 +7,11 @@ import { useContextGlobal } from "./Context";
 
 function App() {
 
-  const {getPokemon, isLoading} = useContextGlobal()
+  const {getPokemon, isLoading, displayPokemons} = useContextGlobal()
+
+  const body = document.querySelector("body")
+
+  displayPokemons ?  body.style.overflow = "" : body.style.overflow = "hidden"
 
   if (isLoading) {
     return (
