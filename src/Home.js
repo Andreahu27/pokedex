@@ -78,7 +78,7 @@ const Home = () => {
                     
                     <p>Base experience: {pokemonDetails.main.base_experience}</p>
                     <p>Height (cm): {pokemonDetails.main.height * 10}</p>
-                    <p>Weight (kg): {pokemonDetails.main.weight * 0.1}</p>
+                    <p>Weight (kg): {Math.round((pokemonDetails.main.weight * 0.1)*100)/100}</p>
 
 
                     {hasEvolutionData && (
